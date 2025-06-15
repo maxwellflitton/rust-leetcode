@@ -17,6 +17,43 @@
 //! 3. `while left_ptr < right_ptr`
 //!
 //! How we alter the pointers in the loop depends on the problem
+//!
+//! # Types of loops
+//! There are multiple different types of loops
+//!
+//! ## Blind iteration
+//!
+//! Blindly traverse the iterator. This might cross but will never overflow or
+//! underflow due to breaking the `left_ptr < right_ptr` before reaching `0` or
+//! `len()`.
+//!
+//! ```
+//! while left_ptr < right_ptr {
+//!     // do something
+//!     left_ptr += 1;
+//!     right_ptr -= 1;
+//! }
+//! ```
+//!
+//! This is good for reversing a string or calculating a palidrome or other problems
+//! where the moving of a pointer is not conditional.
+//!
+//! ## Write pointer
+//!
+//! If there needs to be writing onto the interator then there needs to be a third pointer
+//! that is a writer pointer. The loop will look like the following:
+//!
+//! ```
+//! while left_ptr <= right_ptr  {
+//!     // if the write index moves out of bounds exit the loop because the write is done
+//!     if write_idx == 0 {
+//!         break;
+//!     }
+//!     // move the write index positive or negative depending on the problem
+//!     write_idx -= 1;
+//! }
+//! ```
+//!
 mod merge_arrays;
 mod palidrome;
 mod reverse_a_string;
