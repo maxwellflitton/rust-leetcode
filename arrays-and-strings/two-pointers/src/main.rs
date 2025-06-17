@@ -5,7 +5,7 @@
 //! 2. checking for palindromes
 //! 3. removing duplicates or elements
 //! 4. two sum in a sorted array
-//! 5. container with the most water
+//! 5. container of the largest size
 //! 6. merging sorted arrays
 //! 7. sliding window expansion
 //! 8. partitioning and rearranging arrays

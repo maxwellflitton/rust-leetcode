@@ -1,5 +1,5 @@
 [workspace]
 resolver = "2"
-members = [ "arrays-and-strings/sliding-window",
+members = [ "arrays-and-strings/prefix-sum", "arrays-and-strings/sliding-window",
     "arrays-and-strings/two-pointers"
 ]

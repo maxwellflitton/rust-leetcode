@@ -3,6 +3,10 @@
 version = 4
 
 [[package]]
+name = "prefix-sum"
+version = "0.1.0"
+
+[[package]]
 name = "sliding-window"
 version = "0.1.0"
 
