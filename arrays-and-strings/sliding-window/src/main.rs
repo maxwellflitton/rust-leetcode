@@ -17,6 +17,7 @@
 //! 7. in loop =>  increase the right pointer (has to be at the end to prevent overflow)
 
 mod best_subarray;
+mod dynamic_longest_binary;
 mod longest_binary;
 mod longest_sum_array;
 mod maximum_average;
