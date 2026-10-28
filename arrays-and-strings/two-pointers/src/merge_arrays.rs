@@ -34,6 +34,58 @@ pub fn merge_arrays(one: Vec<i32>, two: Vec<i32>) -> Vec<i32> {
     buffer
 }
 
+/// The merge with a indicator of how many are in nums1.
+///
+/// # Notes
+/// Here we are just taking the simple approach
+fn merge_with_prefill(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
+    // setup the pointers
+    let (m, n) = (m as usize, n as usize);
+    let (mut left, mut right) = (0, 0);
+
+    // setup the buffer
+    let mut buffer = Vec::with_capacity(m + n);
+
+    // loop through the pointers for the vectors to be merged
+    while left < m && right < n {
+        if nums1[left] <= nums2[right] {
+            buffer.push(nums1[left]);
+            left += 1;
+        } else {
+            buffer.push(nums2[right]);
+            right += 1;
+        }
+    }
+
+    // extend if the buffers are not the same length
+    buffer.extend_from_slice(&nums1[left..m]);
+    buffer.extend_from_slice(&nums2[right..n]);
+
+    // replace the pointer for the nums1
+    *nums1 = buffer;
+}
+
+/// This is the memory optimal approach where we fill `nums1` fully with the `nums1`
+/// and maintaining the order of the two vectors.
+fn merge_with_prefill_reverse(nums1: &mut Vec<i32>, m: i32, nums2: &mut Vec<i32>, n: i32) {
+    // setup the pointers (this is the backwards this time)
+    let (mut left, mut right) = (m as usize, n as usize);
+
+    // the write pointer
+    let mut write = left + right;
+
+    while right > 0 {
+        if left > 0 && nums1[left - 1] > nums2[right - 1] {
+            nums1[write - 1] = nums2[left - 1];
+            left -= 1;
+        } else {
+            nums1[write - 1] = nums2[right - 1];
+            right -= 1;
+        }
+        write -= 1;
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;

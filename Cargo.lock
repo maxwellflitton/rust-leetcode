@@ -3,6 +3,14 @@
 version = 4
 
 [[package]]
+name = "hashing"
+version = "0.1.0"
+
+[[package]]
+name = "linked-list"
+version = "0.1.0"
+
+[[package]]
 name = "prefix-sum"
 version = "0.1.0"
 

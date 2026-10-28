@@ -16,6 +16,7 @@ pub fn reverse_string(s: &mut Vec<char>) {
 
     // blindly loop through until the pointers cross
     while left_ptr < right_ptr {
+        // we can also use the s.swap(left_ptr, right_ptr)
         // split into two mutable slices for the right pointer
         let (left, right) = s.split_at_mut(right_ptr);
         // right[0] is always going to be zero otherwise it will be out of bounds

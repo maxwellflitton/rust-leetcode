@@ -31,3 +31,51 @@ pub fn maximum_average(nums: Vec<i32>, k: i32) -> f64 {
 
     highest_average
 }
+
+pub fn simple_maximum_average(nums: Vec<i32>, k: i32) -> f64 {
+    let total_nums = nums.len();
+
+    // early exit conditions
+    if total_nums == 0 {
+        return 0.0;
+    }
+
+    // no point in iterating
+    if total_nums <= k as usize {
+        let total: i32 = nums.iter().sum();
+        return total as f64 / total_nums as f64;
+    }
+
+    // because it's contigious we start with a window of 4
+    let mut l_ptr = 0;
+    let mut r_ptr = k as usize;
+    let mut biggest_average: f64 = 0.0;
+
+    // do the first compute to set everything
+    let total: i32 = nums[l_ptr..r_ptr].iter().sum();
+    biggest_average = total as f64 / k as f64;
+
+    // move the window
+    l_ptr += 1;
+    r_ptr += 1;
+
+    loop {
+        // This is expensive as we're computing everytime
+        let total: i32 = nums[l_ptr..r_ptr].iter().sum();
+
+        let cached_average = total as f64 / k as f64;
+        if cached_average > biggest_average {
+            biggest_average = cached_average;
+        }
+
+        // check the break
+        if r_ptr == total_nums {
+            break;
+        }
+
+        // move the window
+        l_ptr += 1;
+        r_ptr += 1;
+    }
+    biggest_average
+}

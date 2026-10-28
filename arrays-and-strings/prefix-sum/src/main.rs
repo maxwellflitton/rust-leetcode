@@ -1,3 +1,4 @@
+mod k_radius;
 mod minimum_positive_start;
 mod positive_streak;
 mod running_sum;

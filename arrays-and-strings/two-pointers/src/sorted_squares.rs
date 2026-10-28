@@ -22,6 +22,46 @@
 //! don't just read a solution and pass the problem, but really take time to take note of the
 //! techniques used, and why they're useful to solving that specific problem.
 
+pub fn simplified_sorted_squares(nums: Vec<i32>) -> Vec<i32> {
+    // check conditions
+    if nums.is_empty() {
+        return nums;
+    }
+
+    // init buffer
+    let mut buffer = vec![0; nums.len()];
+    let mut w_ptr = nums.len() - 1;
+
+    // init pointers
+    let mut l_ptr = 0;
+    let mut r_ptr = nums.len() - 1;
+
+    // commit a write
+    loop {
+        // calc the sums
+        let l_calc = nums[l_ptr] * nums[l_ptr];
+        let r_calc = nums[r_ptr] * nums[r_ptr];
+
+        // write the largest
+        if r_calc > l_calc {
+            buffer[w_ptr] = r_calc;
+            r_ptr -= 1;
+        } else {
+            buffer[w_ptr] = l_calc;
+            l_ptr += 1;
+        }
+
+        // break the pointer
+        if w_ptr == 0 {
+            break;
+        }
+
+        // decrement the ptr
+        w_ptr -= 1;
+    }
+    buffer
+}
+
 pub fn sorted_squares(nums: Vec<i32>) -> Vec<i32> {
     // setup the pointers
     let mut left_ptr = 0;
